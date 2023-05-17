@@ -1,4 +1,4 @@
-#
+# Get the list of Enterprise applications in same format as downloading it via Azure portal
 Select-MgProfile beta
 
 $Sp = Get-MgServicePrincipal -PageSize 999 -All

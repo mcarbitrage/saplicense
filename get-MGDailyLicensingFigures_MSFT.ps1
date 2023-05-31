@@ -13,14 +13,22 @@ Those permissions needed for the script are:
 # A script that will run daily to check license figures from an Azure tenant
 # and send an email to the O365 Admin team
 
-# Install the required module if not already installed
+<# Install the required module if not already installed
 if (-not (Get-Module -Name Microsoft.Graph)) {
     Install-Module -Name Microsoft.Graph
 }
-
+#>
 <#
 # Import the Microsoft Graph module # decide if needed
 Import-Module -Name Microsoft.Graph
+#>
+# replace tenantID with your tenant ID
+<#
+$tenantID = "2phn2l.onmicrosoft.com"
+Connect-MgGraph -Scopes "User.Read", "Group.Read.All" -TenantId $tenantID
+
+# Connect to Microsoft Graph using a delegated user login
+Connect-MgGraph -Scopes "Group.Read.All", "User.Read.All" -TenantId $tenantID
 #>
 # Connect to Microsoft Graph using a delegated user login
 $tenantID = "2phn2l.onmicrosoft.com"
